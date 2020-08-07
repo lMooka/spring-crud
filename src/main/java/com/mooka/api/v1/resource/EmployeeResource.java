@@ -3,9 +3,7 @@ package com.mooka.api.v1.resource;
 import com.mooka.api.v1.model.Employee;
 import com.mooka.api.v1.service.EmployeeService;
 import com.mooka.msr.MsrResource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,8 +16,8 @@ public class EmployeeResource extends MsrResource<Employee, EmployeeService, Int
         super(service);
     }
 
-    @GetMapping
-    public List<Employee> searchEmployeeName(String name) {
+    @GetMapping("/search")
+    public List<Employee> searchEmployeeName(@RequestParam String name) {
         return service.findAll(EmployeeService.byName(name));
     }
 }
